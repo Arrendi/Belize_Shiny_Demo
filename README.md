@@ -12,14 +12,14 @@ ui = pageWithSidebar(
   #The sidebar for parameter input
   sidebarPanel(
     #Sliders:
-    sliderInput("beta", "Transmission (days):", 300,
-                min = 0, max = 300),
-    sliderInput("infper", "Infectious period (days)", 12,
-                min = 1, max = 30),
-    sliderInput("mu", "Recovery rate:", 21,
-                min = 0, max = 100),
+    sliderInput("beta", "Transmission (days):", 10,
+                min = 0, max = 30),
+    sliderInput("infper", "Infectious period (days)", 5.5,
+                min = 1, max = 34),
+    sliderInput("mu", "Recovery rate:", 10,
+                min = 0, max = 30),
     sliderInput("T", "Time range:",
-                min = 0, max = 1000, value = c(0,10))
+                min = 0, max = 1000, value = c(0,15))
   ),
   #Main panel for figures and equations
   mainPanel(
@@ -83,7 +83,7 @@ server = function(input, output) {
     times = seq(0, input$T[2], by=1/1000)
     parms = c(mu = input$mu, N = 1, beta = input$beta,
               gamma = 365/input$infper)
-    start = c(S=0.999, I=0.002, R = .89)
+    start = c(S=0.97, I=0.03, R = .99)
     R0 = round(with(as.list(parms), beta/(gamma+mu)), 1)
     #Integrate ode with parameters pulled from UI
     out=ode(y=start, times=times, func=sirmod,
