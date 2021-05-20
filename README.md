@@ -13,7 +13,7 @@ ui = pageWithSidebar(
   sidebarPanel(
     #Sliders:
     sliderInput("beta", "Transmission (days):", 300,
-                min = 0, max = 1000),
+                min = 0, max = 300),
     sliderInput("infper", "Infectious period (days)", 12,
                 min = 1, max = 30),
     sliderInput("mu", "Recovery rate:", 21,
@@ -35,7 +35,7 @@ ui = pageWithSidebar(
                withMathJax(
                  helpText("Susceptible $$\\frac{dS}{dt} =
 \\mu (N - S) - \\frac{\\beta I S}{N}$$"),
-                 helpText("Infecitous $$\\frac{dI}{dt} =
+                 helpText("Infectous $$\\frac{dI}{dt} =
 \\frac{\\beta I S}{N} - (\\mu+\\sigma) I$$"),
                  helpText("Removed $$\\frac{dR}{dt} =
 \\gamma I - \\mu R$$"),
